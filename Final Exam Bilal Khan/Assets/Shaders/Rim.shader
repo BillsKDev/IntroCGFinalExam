@@ -1,9 +1,10 @@
-Shader "Custom/Toon"
+Shader "Custom/Rim"
 {
     Properties
     {
         _BaseColor ("Base Color", Color) = (1, 1, 1, 1)
-        _RampTex ("Ramp Texture", 2D) = "white" {}
+        _RimColor ("Rim Color", Color) = (0, 0.5, 0.5, 1)
+        _RimPower ("Rim Power", Range(0.5, 8.0)) = 3.0
     }
 
     SubShader
@@ -23,40 +24,43 @@ Shader "Custom/Toon"
             {
                 float4 positionOS : POSITION;
                 float3 normalOS : NORMAL;
+                float4 tangentOS : TANGENT;
             };
 
             struct Varyings
             {
                 float4 positionHCS : SV_POSITION;
-                float3 normalWS : TEXCOORD0;
-                float3 viewDirWS : TEXCOORD1;
+                float3 viewDirWS : TEXCOORD0;
+                float3 normalWS : TEXCOORD1;
             };
 
-            TEXTURE2D(_RampTex);
-            SAMPLER(sampler_RampTex);
+            TEXTURE2D(_MainTex);     
+            SAMPLER(sampler_MainTex); 
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseColor;
+                float4 _RimColor;
+                float _RimPower;
             CBUFFER_END
+
 
             Varyings vert(Attributes IN)
             {
                 Varyings OUT;
                 OUT.positionHCS = TransformObjectToHClip(IN.positionOS.xyz);
                 OUT.normalWS = normalize(TransformObjectToWorldNormal(IN.normalOS));
-                OUT.viewDirWS = normalize(GetWorldSpaceViewDir(IN.positionOS.xyz));
+                float3 worldPosWS = TransformObjectToWorld(IN.positionOS.xyz);
+                OUT.viewDirWS = normalize(GetCameraPositionWS() - worldPosWS);
                 return OUT;
             }
 
             half4 frag(Varyings IN) : SV_Target
             {
-                Light mainLight = GetMainLight();
-                half3 lightDirWS = normalize(mainLight.direction);
-                half3 lightColor = mainLight.color;
-
-                half NdotL = saturate(dot(IN.normalWS, lightDirWS));
-                half rampValue = SAMPLE_TEXTURE2D(_RampTex, sampler_RampTex, float2(NdotL, 0)).r;
-                half3 finalColor = _BaseColor.rgb * lightColor * rampValue;
+                half3 normalWS = normalize(IN.normalWS);
+                half3 viewDirWS = normalize(IN.viewDirWS);
+                half rimFactor = (dot(viewDirWS, normalWS));
+                half rimLighting = rimFactor * _RimPower;
+                half3 finalColor = _BaseColor.rgb + _RimColor.rgb * rimLighting;
                 return half4(finalColor, _BaseColor.a);
             }
 

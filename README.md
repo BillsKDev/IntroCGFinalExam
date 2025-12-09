@@ -14,7 +14,13 @@ A scrolling texture was made as the background to show a menu like screen for Pa
 
 This shader was done by using a texture and a scroll speed for only the X value. In class we were shown how to do a scrolling texture with X and Y, but I did not feel the need for the Y scrolling so I decided to only implement X scrolling. This was done by taking  the texture and transforming to clip space, then changing the UV's X value for the texture by multiplying it by Unitys built in Time value for shaders, so you take the time Y and since we are only implementing X scrolling in this shader different from class, we only have to make the UV x value equal to the multiplied value of a custom scroll speed and time value
 
+**DIAGRAM:*
+<img width="829" height="727" alt="image" src="https://github.com/user-attachments/assets/cfad7588-8af5-44c8-832e-79e032e0ea61" />
+
 <h3>SECOND SHADER: HOLOGRAMS</h3>
+A hologram shader was used for the player Pacman (See video: https://www.youtube.com/watch?v=vAWV-gOn31Q the yellow circle is the pacman object) It has asmall hologram circling around the object really fast. I chose to use the hologram for this object because with the color grading that was done some of the obejcts was hard to be noticeable in the scene, so with this effect you can clearly see the player and give him a more sci fi look to differentiate itself and fit the color grading since the hologram effect is really fast.
+
+In class, we did a hologram with rim lighting, I decided to not use it at all so i removed all rim lighting behaviors from the shader and jsust focused on the hologram effect with the main texture. This shader takes position, normal, and view direction, and calculates a line value through a sine wave with a frequency, the x uv, and time. The color then is calculated with a step function multiplying the line color and a float value i specify for the color on the hologram. In class, we made a hologram effect with the line coming down and it was really slow. I felt like this didnt really make sense for my player so I wanted the hologram line to continously wrap around the plaeyr so I made the line move along the X axis instead, while using the Time Z value which was different from class so that it can have a snmall unique always visible hologram that is wrapping around the player.
 
 <h3>THIRD SHADER: COLOR GRADING</h3>
 

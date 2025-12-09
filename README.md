@@ -30,7 +30,7 @@ My third shader done was color grading, and this was done to make the map of the
 <h3>FOURTH SHADER: RIM LIGHTING</h3>
 <img width="666" height="353" alt="image" src="https://github.com/user-attachments/assets/eab75692-11fc-4fce-bf8f-55843908de46" />
 
-The final shader done was rim lighting. This was used on the enemy and powerup to give them a more enhanced look in the scene and make them more noticeable. This is different from the one done in class because I wanted the rim lighting to cover the entire object so
+The final shader done was rim lighting. This was used on the enemy and powerup to give them a more enhanced look in the scene and make them it  more noticeable. This is different from the one done in class because I wanted the rim lighting to cover the entire object so instead of just grazing angles it covers more so the entire object. This was done by removing the  1 - on the rim lighting calculations and removingg the saturation factor so that the rim lighting ccovers the entire object. I also decided to multiply the rim factor and rim power instead of using a pow function because i didn't want the rim lighting to be exponentially changed and juts multiplied for a smoother look.
 <img width="725" height="512" alt="image" src="https://github.com/user-attachments/assets/6846ea31-ba6b-4bc4-ae01-cb97cd210fe4" />
 
 

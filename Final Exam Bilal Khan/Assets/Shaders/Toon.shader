@@ -4,8 +4,6 @@ Shader "Custom/Toon"
     {
         _BaseColor ("Base Color", Color) = (1, 1, 1, 1)
         _RampTex ("Ramp Texture", 2D) = "white" {}
-        _RimColor ("Rim Color", Color) = (1, 1, 1, 1)
-        _RimPower ("Rim Power", Range(0.1, 8.0)) = 1.5
     }
 
     SubShader
@@ -39,8 +37,6 @@ Shader "Custom/Toon"
 
             CBUFFER_START(UnityPerMaterial)
                 float4 _BaseColor;
-                float4 _RimColor;
-                float _RimPower;
             CBUFFER_END
 
             Varyings vert(Attributes IN)
@@ -61,11 +57,6 @@ Shader "Custom/Toon"
                 half NdotL = saturate(dot(IN.normalWS, lightDirWS));
                 half rampValue = SAMPLE_TEXTURE2D(_RampTex, sampler_RampTex, float2(NdotL, 0)).r;
                 half3 finalColor = _BaseColor.rgb * lightColor * rampValue;
-
-                half rimDot = 1.0 - saturate(dot(IN.viewDirWS, IN.normalWS));
-                half rimFactor = pow(rimDot, _RimPower);
-                finalColor += _RimColor.rgb * rimFactor;
-
                 return half4(finalColor, _BaseColor.a);
             }
 

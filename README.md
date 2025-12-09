@@ -1,5 +1,7 @@
 # INTRO CG FINAL EXAM BILAL KHAN EXPLANATIONS
 
+NOTE: IN THE BUILD FOR SOME REASON I CANT SEE THE HOLOGRAM AND RIM LIGHTING EFFECT. THIS IS PROBABLY BECAUSE I DIDNT PUT THE RIGHT URP TAG FOR THE SHADER. THOUGH IN THE SCREENSHOTS AND IN UNITY IT LOOKS PERFECTLY FINE AND I JUST REALIZED DURING THE WRITEUP
+
 
 <h3>BASE SCENE:</h3>
 A quick note that I spoke with the professor on how to approach a fourth shader. Since Scerolling and holograms are required for pacman, and they were both second half shaders, i had a hard time figuring out what shaders to use from the second half with so little to choose from. Glass, Water, PBR, Shadows do not really make sense for a pacman game especially on a 2D surface so I chose to do rim lighting as my fourth shader to improve the poewr up look.

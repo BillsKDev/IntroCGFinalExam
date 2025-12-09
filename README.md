@@ -28,5 +28,10 @@ In class, we did a hologram with rim lighting, I decided to not use it at all so
 My third shader done was color grading, and this was done to make the map of the game look a lot more unique to what was used in the original pac man game. I used a cool LUT and a blank pac man background image i found from a google search and put them together to create the color grading effect on the map so it gives off a more cooler vibe. This shader was done by using the LUT that I changed through photoshop with the hue satuuation and other values and determining a contribution. It maps all the input values from the LUT and changes it to the output value via the LUT with a lerp effect. This was done in Unity through using a render texture and applying it on an object with the LUT material and  a custom texture, which was the PAC man background I sued from online. Personally I think this was the best effect that fits the look of the game.
 
 <h3>FOURTH SHADER: RIM LIGHTING</h3>
+<img width="666" height="353" alt="image" src="https://github.com/user-attachments/assets/eab75692-11fc-4fce-bf8f-55843908de46" />
+
+The final shader done was rim lighting. This was used on the enemy and powerup to give them a more enhanced look in the scene and make them more noticeable. This is different from the one done in class because I wanted the rim lighting to cover the entire object so
+<img width="725" height="512" alt="image" src="https://github.com/user-attachments/assets/6846ea31-ba6b-4bc4-ae01-cb97cd210fe4" />
+
 
 
